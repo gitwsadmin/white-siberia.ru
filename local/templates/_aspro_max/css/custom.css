@@ -1,0 +1,156 @@
+/*NOTE: This file is intended for programmers. Aspro technical support is not advised to work with him.*/
+
+/* Examples (uncomment to use):*/
+
+/* Expand site width */
+/* body .wrapper { max-width: 1400px !important;  } */
+
+/* Set site background image */
+/* body {  background: url(image_source) top no-repeat; }
+
+/* Hide compare button */
+/* a.compare_item { display: none !important;  }*/
+
+@media (min-width: 992px) {
+	body.top_header_opacity .wrapper1.long_banner .light-menu-color .top-block.top-block-v1 .basket_hover_block * {
+		color: #111;
+	}
+}
+.basket_wrap * {
+	color: #111!important;
+}
+.btn.btn-default {
+	color: #fff!important;
+}
+.btn.btn-default span {
+	color: #fff!important;
+}
+.basket_hover_block .tabs_content .buttons .basket_back a:hover span {
+	color: #fff!important;
+}
+.item-views.tizers .item-wrapper&gt;.item .image {
+	max-height: 60px;
+	margin-bottom: 20px;
+}
+.tizers .svg svg{
+	height: 60px!important;
+	width: 60px!important;
+}
+
+.item-views.tizers:not(.top) .item-wrapper&gt;.item .image {
+
+}
+@media (min-width: 601px) {
+	.item-views.company .item-views.tizers .item-wrapper&gt;.item .pull-left+.inner-text {
+    padding-left: 80px;
+	}
+}
+@media (max-width: 600px) {
+	.item-views.tizers .mobile-list .item-wrapper&gt;.item .image {
+    width: 60px;
+    height: 60px;
+    margin: 6px 18px 0 0;
+	}	
+}
+
+
+.video__item {
+	position: relative;
+	overflow: hidden;
+	border-radius: 3px;
+	padding-top: 55%;
+	border: 1px solid #ececec;
+}
+
+.video__frame,
+.video__preview {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%!important;
+	height: 100%!important;
+	z-index: 2;
+}
+.video__preview {
+	background-size: cover;
+	background-position: center;
+	cursor: pointer;
+}
+.video__frame {
+	z-index: 1;
+	-o-object-fit: cover;
+	object-fit: cover;
+}
+.video__title {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px 15px;
+	z-index: 15;
+	color: #fff !important;
+	font-weight: 700;
+}
+.video__button {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: calc(50% - 70px);
+	left: calc(50% - 70px);
+	height: 140px;
+	width: 140px;
+	z-index: 5;
+}
+.video__button-icon {
+	color: #E30D18;
+	font-size: 120px;
+	transition: 0.25s;
+}
+.video__item:hover .video__button-icon {
+	color: #000;
+}
+
+.section-compact-list__image {
+	width: 60px;
+	height: 60px;
+}
+.section-compact-list__image.with-icons svg {
+	width: 60px;
+	height: 60px;
+}
+.menu_top_block.catalog_block .dropdown&gt;li.full&gt;.dropdown&gt;li&gt;.image svg {
+	width: 50px;
+	height: 50px;
+}
+
+.menu-row .mega-menu table td.wide_menu&gt;.wrap&gt;.dropdown-menu ul.menu-wrapper&gt;li.has_img.icon {
+	padding-left: 70px;
+}
+
+.menu-row .mega-menu table td.wide_menu&gt;.wrap&gt;.dropdown-menu ul.menu-wrapper&gt;li.has_img.icon svg {
+	width: 60px;
+	height: 60px;
+}
+
+
+.char-side__title {
+	display: none;
+}
+
+.basket_wrap *{color:var(--white_text_black)!important;}
+
+.props_block .char:hover .char_name span.js-prop-title {
+    color: #333;
+}
+
+.props_block .char:hover .char_value.darken {
+    color: #333;
+}
+
+.menu_img.icon .svg svg{
+	width: 40px;
+	height: 40px;
+}

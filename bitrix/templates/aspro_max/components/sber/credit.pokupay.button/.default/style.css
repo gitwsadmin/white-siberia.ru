@@ -1,0 +1,390 @@
+
+html body .com-sber-pokupay--buy-button__wrapper {
+	display: block;
+	width: auto;
+	margin:15px 0px;
+}
+html body .com-sber-pokupay--modal-preloader__wrapper {
+	display: none;
+}
+html body .com-sber-pokupay--modal-preloader__inner {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+	z-index: 100;
+	background: #fff;
+	flex-wrap: wrap;		
+}
+html body .com-sber-pokupay--modal-preloader__item {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+html body .com-sber-pokupay--modal-preloader__wrapper span {
+	display: block;
+    width: 300px;
+    max-width: 100%;
+    font-size: 14px;
+    color: #64686b;
+    line-height: 20px;
+    text-align: center;
+    margin: 20px 0;
+}
+html body .com-sber-pokupay--header-logo {
+	width: 200px;
+	/* margin: 0 auto 15px; */
+	display: block;
+	top: 24px;
+}
+html body .com-sber-pokupay--product__title {
+	display: block;
+	font-size: 24px;
+	line-height: 22px;
+	color: #2c3136;
+	margin: 30px 0 30px;
+	/* text-align: center; */
+	font-weight: bold;
+}
+html body .com-sber-pokupay--product__price {
+	font-size: 18px;
+	font-weight: bold;
+	display: block;
+	margin: 5px 0;
+	text-align: center;
+}
+html body .com-sber-pokupay--modal__close-button {
+    position: absolute;
+    right: 34px;
+    top: 22px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    font-size: 0;
+    color: transparent;
+    background: transparent;
+    outline: none !important;
+    z-index: 150;
+}
+html body .com-sber-pokupay--modal__close-button:after,
+html body .com-sber-pokupay--modal__close-button:before {
+	content: '';
+    width: 2px;
+    height: 30px;
+    transform: rotate(-45deg);
+    position: absolute;
+    left: 19px;
+    top: 5px;
+    background: #2c3136;
+}
+html body .com-sber-pokupay--modal__close-button:after {
+	transform: rotate(45deg);
+}
+html body .com-sber-pokupay--buy-button__button {
+	min-width: 140px;
+	width: 100%;
+	max-width: 100%;
+	display: flex;
+	border: none;
+	color: #fff;
+	margin: 0 0;
+	padding: 0 0px;
+	cursor: pointer;
+	border-radius: 4px;
+	background-size: cover;
+	font-size: 0;
+	background: transparent;
+    border: none;
+}
+html body .com-sber-pokupay--buy-button__button img {
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+}
+
+html body .com-sber-pokupay--buy-button__button:hover {
+	/*background: #44c77f;*/
+}
+html body .com-sber-pokupay--modal__wrapper {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: rgb(0 0 0 / 15%);
+	z-index: 2500;
+	display: none;
+}
+html body .com-sber-pokupay--modal__inner {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+html body .com-sber-pokupay--modal__window {
+	position: relative;
+	background: #fff;
+	width: 600px;
+	max-width: 100%;
+	padding: 26px 30px 20px;
+	max-height: 100%;
+    overflow: auto;
+}
+html body .com-sber-pokupay--form__input {
+	display: flex;
+	align-items: center;
+	/* justify-content: center; */
+	width: 100%;
+	margin: 6px 0;
+}
+html body .com-sber-pokupay--form__label {
+	display: block;
+	width: 35%;
+	font-size: 14px;
+	color: #2c3136;
+}
+html body .com-sber-pokupay--form__label._required i {
+	color: red;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
+}
+html body .com-sber-pokupay--form__field {
+	display: block;
+	width: 65%;
+	margin-left: 0%;
+	background: #fff;
+	border:1px solid #d6d0d0;
+	height: 36px;
+	padding: 0 15px;
+	outline: none;
+	font-size: 16px;
+	color: #2c3136;
+}
+html body .com-sber-pokupay--form__field-error-message {
+	margin-left: 35%;
+	font-size: 12px;
+	color: red;
+	line-height: 15px;
+	margin-bottom: 12px;
+	display: none;
+}
+html body .com-sber-pokupay--form__field-error-message._active {
+	display: block;
+}
+html body .com-sber-pokupay--form__field._phone {
+	max-width: 170px;
+}
+html body .com-sber-pokupay--form__field._textarea {
+	height: 100px;
+	max-height: 100px;
+	min-height: 100px;
+}
+html body .com-sber-pokupay--form__title {
+	font-size: 20px;
+	/* text-transform: uppercase; */
+	color: #2c3136;
+	/* text-align: center; */
+	display: block;
+	margin-top: 25px;
+	font-weight: bold;
+	margin-bottom: 12px;
+}
+
+
+html body .com-sber-pokupay--product__counter-input {
+	width: 54px;
+	height: 32px;
+	text-align: center;
+	font-weight: bold;
+	margin: 0 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	outline: none;
+	
+}
+
+html body .com-sber-pokupay--product__count-max {
+    position: absolute;
+    left: 0;
+    top: -25px;
+    width: 100%;
+    font-size: 12px;
+		color: #777;
+    text-align: center;
+    width: 100%;
+}
+html body .com-sber-pokupay--product__count-measure  {
+	position: absolute;
+	left: 0;
+	top: 100%;
+	width: 100%;
+	font-size: 12px;
+	color: #777;
+	text-align: center;
+}
+html body .com-sber-pokupay--product__counter-button {
+	display: flex;
+	align-items:center;
+	justify-content: center;
+	height: 32px;
+	width: 32px;
+	background: #2c3136;
+	color: #fff;
+	border: none;
+	outline: none;
+	font-size: 22px;
+	line-height: 22px;
+	border-radius: 4px;
+}
+html body .com-sber-pokupay--product__counter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 0 0;
+	position: relative;
+	/* width: 100%; */
+}
+html body .com-sber-pokupay--form__summ-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	/* justify-content: center; */
+	flex-wrap: wrap;
+	/* border-top:1px solid #ccc; */
+	padding-top: 0px;
+	align-items: center;
+	margin-bottom: 30px;
+	margin-top: 30px;
+
+}
+html body .com-sber-pokupay--form__summ-title {
+	font-size: 16px;
+	color: #2c3136;
+	text-align: center;
+}
+html body .com-sber-pokupay--form__summ-value {
+	font-size: 19px;
+	font-weight: bold;
+	display: block;
+	/* margin: 0px 0 5px; */
+	/* text-align: center; */
+	/* width: 100%; */
+}
+html body .com-sber-pokupay--form__submit {
+	width: 200px;
+	max-width: 100%;
+  border: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  height: auto;
+  font-size: 0;
+  padding: 0;
+  height: 42px;
+}
+html body .com-sber-pokupay--form__submit._credit {
+	width: 190px;
+	height: 49px;
+}
+.com-sber-pokupay--payment-gate-errors__btn-return {
+	background: #2c3136;
+  color: #fff;
+  border: none;
+  width: 160px;
+  height: 40px;
+  border-radius: 4px;
+  display: block;
+  margin: 18px 0 0;
+}
+html body .com-sber-pokupay--form__submit img {
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+}
+html body .com-sber-pokupay--form__footer {
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 18px 0px 0;
+    /* padding: 0 20px; */
+    /* border-top: 1px solid #ccc; */
+    padding-top: 0px;
+    justify-content: flex-end;
+}
+
+html body .com-sber-pokupay--form__separator {
+	display: block;
+	width: auto;
+	margin: 20px -30px;
+	height: 1px;
+	padding: 0;
+	background: #ccc;
+
+
+}
+html body .com-sber-pokupay--payment-gate-errors__wrapper {
+	display: none;
+	padding: 30px 0 0;
+	color: #555;
+}
+html body .com-sber-pokupay--payment-gate-errors__code {
+  display: block;
+  font-size: 16px;
+  line-height: 23px;
+  color: #cd1820;
+}
+html body .com-sber-pokupay--payment-gate-errors__message {
+	display: block;
+	font-size: 20px;
+	color: #555;
+}
+html body .com-sber-pokupay--payment-gate-errors__title {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    display: block;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #08a652;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #08a652 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

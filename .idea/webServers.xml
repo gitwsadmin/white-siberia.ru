@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="bae3708d-3629-4308-a908-a470af7561ee" name="white-siberia.ru" url="http://178.170.243.199">
+        <fileTransfer rootFolder="/www/white-siberia.ru" host="178.170.243.199" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
