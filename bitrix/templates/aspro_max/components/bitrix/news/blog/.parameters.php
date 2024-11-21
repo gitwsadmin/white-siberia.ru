@@ -524,15 +524,15 @@ $arTemplateParameters = array_merge($arPageBlocksParams, array(
 			"TYPE" => "LIST",
 			"DEFAULT" => "-",
 			"ADDITIONAL_VALUES" => "Y",
-			"VALUES" => array_merge(Array("-"=>" "), $arProperty_XL),
-		),
+        "VALUES" => array_merge(Array("-"=>" "), $arProperty_XL ?? []),
+    ),
 	"SALE_STIKER" =>array(
 			"PARENT" => "DETAIL_SETTINGS",
 			"NAME" => GetMessage("SALE_STIKER"),
 			"TYPE" => "LIST",
 			"DEFAULT" => "-",
 			"ADDITIONAL_VALUES" => "Y",
-			"VALUES" => array_merge(Array("-"=>" "), $arProperty_S),
+			"VALUES" => array_merge(Array("-"=>" "), $arProperty_S ?? []),
 		),
 	"SHOW_SECTIONS_FILTER" => array(
 			"NAME" => GetMessage("SHOW_SECTIONS_FILTER"),

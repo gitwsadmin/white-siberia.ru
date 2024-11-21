@@ -1,0 +1,2 @@
+<?
+$MESS["DOCUMENTS_TEMPLATES_ERROR_TEMPLATE_NOT_FOUND"] = "Не найден шаблон счёта";

@@ -1,0 +1,4 @@
+<?
+$MESS["ITCTOOLS_SUPPORT_SUPPORT"] = "Support";
+$MESS["ITCTOOLS_SUPPORT_CREATE_BY"] = "Created by:";
+?>
