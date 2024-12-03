@@ -1,0 +1,1 @@
+<img style="margin-right: 21.33px;" src="<?=SITE_TEMPLATE_PATH.'/images/footer_logo.svg';?>"><?=date("Y")?> &copy; White Siberia

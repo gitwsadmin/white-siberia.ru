@@ -1,0 +1,1 @@
+Согласен с <a href="/info/publichnaya-oferta/" target="_blank">публичной офертой</a>
