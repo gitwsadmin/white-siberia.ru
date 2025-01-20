@@ -9,7 +9,7 @@
     .tooltip-content {
         display: none;
         position: absolute;
-        top: 100%;
+        top: 0;
         left: 0;
         max-width: 210px;
         min-height: 100px;
