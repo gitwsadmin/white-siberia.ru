@@ -109,7 +109,7 @@ $eventManager->addEventHandler('ipol.aliexpress', 'onBeforeItemExport', function
 
 
             /*
-            $arDescr = unserialize($arProps['OPISANIE_DLYA_ALIEKSPRESS']['VALUE']);
+            $arDescr = unserialize($arProps['OPISANIE_DLYA_ALIEKSPRESS']['VALUE'], ['allowed_classes' => false]);
             ECHO 'ok ob';
             print_r($arProps['OPISANIE_DLYA_ALIEKSPRESS']['VALUE']);
             print_r($arDescr); exit;
@@ -392,23 +392,32 @@ function LogTG($messageText, $groupChatId = null)
     $chatId = $groupChatId ? $groupChatId : $defaultChatId;
 
     $telegramUrl = "https://api.telegram.org/bot".$botToken."/sendMessage";
-    $text = $_SERVER["HTTP_HOST"]. "\n";
-    $text .= print_r($messageText, true);
-    $telegram_params = [
+    $text = $_SERVER["HTTP_HOST"]. "\n" . print_r($messageText, true);
+
+    $postFields = [
         'chat_id' => $chatId,
         'text' => $text,
     ];
 
-    $options = [
-        'http' => [
-            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-            'method'  => 'POST',
-            'content' => http_build_query($telegram_params),
-        ],
-    ];
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $telegramUrl);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+    $response = curl_exec($ch);
 
-    $context  = stream_context_create($options);
-    file_get_contents($telegramUrl, false, $context);
+    if (curl_errno($ch)) {
+        return ['status' => 'error', 'error' => curl_error($ch)];
+    }
+
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($httpCode !== 200) {
+        return ['status' => 'error', 'http_code' => $httpCode, 'response' => $response];
+    }
+
+    return ['status' => 'success', 'response' => $response];
 }
 
 /**
