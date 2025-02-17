@@ -35,7 +35,8 @@ class SettingController extends Controller
 
     public function actionSites()
     {
-        $data = Smartseo\Models\SmartseoSettingTable::getSiteSettings();
+        $smartseoSettingTable = new Smartseo\Models\SmartseoSettingTable();
+        $data = $smartseoSettingTable->getSiteSettings();
 
         $this->render('sites', [
             'alias' => self::ALIAS,
@@ -44,9 +45,9 @@ class SettingController extends Controller
             ], [
                 'ACTIVE' => 'Y',
             ]),
-            'listPropertyListOptions' => Smartseo\Models\SmartseoSettingTable::getPropertyListReplaceOptions(),
-            'listPropertyElementOptions' => Smartseo\Models\SmartseoSettingTable::getPropertyElementReplaceOptions(),
-            'listPropertyDirectoryOptions' => Smartseo\Models\SmartseoSettingTable::getPropertyDirectoryReplaceOptions(),
+            'listPropertyListOptions' => $smartseoSettingTable->getPropertyListReplaceOptions(),
+            'listPropertyElementOptions' => $smartseoSettingTable->getPropertyElementReplaceOptions(),
+            'listPropertyDirectoryOptions' => $smartseoSettingTable->getPropertyDirectoryReplaceOptions(),
             'data' => $data
         ]);
     }

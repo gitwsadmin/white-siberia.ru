@@ -58,9 +58,9 @@ if ($resultLoaderModule == \Bitrix\Main\Loader::MODULE_DEMO || $resultLoaderModu
     if(!$request->isAjaxRequest() && $resultLoaderModule == \Bitrix\Main\Loader::MODULE_DEMO) {
         \CAdminMessage::ShowMessage(Loc::getMessage('SMARTSEO_INDEX__ERROR__MODULE_DEMO'));
     }
-
+    $smartSeo = new Smartseo\General\Smartseo();
     $frontController = new FrontController($request);
-    $frontController->setRootViewsPath(Smartseo\General\Smartseo::getModulePath() . join('/', ['admin', 'smartseo', 'views']));
+    $frontController->setRootViewsPath($smartSeo->getModulePath() . join('/', ['admin', 'smartseo', 'views']));
    
     try {
         if (!$USER->IsAuthorized()) {

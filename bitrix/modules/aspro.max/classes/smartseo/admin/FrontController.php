@@ -83,11 +83,12 @@ class FrontController
 
     public function registerExtensions()
     {
+        $smartSeo = new Smartseo\General\Smartseo();
         $moduleId = Smartseo\General\Smartseo::MODULE_ID;
-        $relativePath = str_replace('/', DIRECTORY_SEPARATOR, Smartseo\General\Smartseo::getModulePath(false));
+        $relativePath = str_replace('/', DIRECTORY_SEPARATOR, $smartSeo->getModulePath(false));
 
         if(!$this->isCatalogModule()) {
-            require_once(Smartseo\General\Smartseo::getModulePath() . 'lib/smartseo/condition/bxcond/catalog_cond.php');
+            require_once($smartSeo->getModulePath() . 'lib/smartseo/condition/bxcond/catalog_cond.php');
 
             $bxCondition = [
                 'js' => '/bitrix/js/' . $moduleId . '/smartseo/bxcond/core_tree.min.js',
