@@ -31,9 +31,17 @@ class AuthCompanyChoose extends CBitrixComponent implements Controllerable
     }
 
     private function getCompaniesByUserID($userID = false) {
-        if (!$userID) return;
+        if (!$userID) {
+            $this->currentCompany = [];
+            return;
+        }
         $company = new Company();
-        $this->currentCompany = $company->getCompaniesByUserID($userID, ["COMPANY_NAME"=>"asc"]);
+        $companies = $company->getCompaniesByUserID($userID, ["COMPANY_NAME" => "asc"]);
+        if (is_array($companies)) {
+            $this->currentCompany = $companies;
+        } else {
+            $this->currentCompany = []; // Установить в пустой массив, если результат неверный
+        }
     }
 
     private function getCurrentCompany ($userID = false) {

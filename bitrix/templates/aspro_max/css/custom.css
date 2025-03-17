@@ -313,3 +313,17 @@ section.toggle label {
 .set-position.top.left {
     background-position: top;
 }
+
+/* увеличиваем картинку детальную на товаре */
+.product-info-headnote + .product-detail-gallery {
+    padding-top: 0;
+    height: 600px;
+}
+
+.product-detail-gallery__link,
+.product-detail-gallery__item--big,
+.product-detail-gallery__container
+/*.product-detail-gallery__slider*/
+{
+    height: 600px !important;
+}
