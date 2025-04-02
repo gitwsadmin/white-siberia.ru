@@ -442,3 +442,58 @@ function pr($ar, $dark = false, $die = false)
     }
     if($die) die();
 }
+
+
+// Регистрация обработчика события
+AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", "TrackProductChanges");
+
+/**
+ * Функция-обработчик для отслеживания изменений товара.
+ *
+ * @param array $arFields Массив полей элемента информационного блока.
+ * @return void
+ */
+function TrackProductChanges($arFields)
+{
+    // Проверяем, соответствует ли ID элемента заданному (21248)
+    if ($arFields['ID'] == 21248) {
+        // Получаем ID текущего пользователя
+        $userId = (int)$GLOBALS['USER']->GetID();
+
+        // Получаем информацию о пользователе
+        $user = CUser::GetByID($userId)->Fetch();
+        $userName = $user['LOGIN'] . ' (' . $user['NAME'] . ' ' . $user['LAST_NAME'] . ')';
+
+        // Логируем информацию о том, кто изменил товар
+        LogTG("Товар с ID {$arFields['ID']} был изменен пользователем: {$userName} (ID: {$userId})");
+
+        // Если нужно сохранить данные в файл или базу данных, можно добавить дополнительный код здесь
+    }
+}
+
+// Регистрация обработчика события
+AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", "TrackProductChanges1");
+
+/**
+ * Функция-обработчик для отслеживания изменений товара.
+ *
+ * @param array $arFields Массив полей элемента информационного блока.
+ * @return void
+ */
+function TrackProductChanges1($arFields)
+{
+    // Проверяем, соответствует ли ID элемента заданному (21235)
+    if ($arFields['ID'] == 21235) {
+        // Получаем ID текущего пользователя
+        $userId = (int)$GLOBALS['USER']->GetID();
+
+        // Получаем информацию о пользователе
+        $user = CUser::GetByID($userId)->Fetch();
+        $userName = $user['LOGIN'] . ' (' . $user['NAME'] . ' ' . $user['LAST_NAME'] . ')';
+
+        // Логируем информацию о том, кто изменил товар
+        LogTG("Товар с ID {$arFields['ID']} был изменен пользователем: {$userName} (ID: {$userId})");
+
+        // Если нужно сохранить данные в файл или базу данных, можно добавить дополнительный код здесь
+    }
+}

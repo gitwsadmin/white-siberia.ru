@@ -243,7 +243,7 @@ if (!empty($arResult['ERRORS']['FATAL'])) {
                                                                         <dd class="col-sm-9">
                                                                             <?
                                                                             if ($orderProp['MULTIPLE'] == "Y") {
-                                                                                $orderProp['VALUE'] = is_array(unserialize($orderProp['VALUE'])) ? implode("<br>", unserialize($orderProp['VALUE'])) : unserialize($orderProp['VALUE']);
+                                                                                $orderProp['VALUE'] = is_array(unserialize($orderProp['VALUE'], ['allowed_classes' => false])) ? implode("<br>", unserialize($orderProp['VALUE'], ['allowed_classes' => false])) : unserialize($orderProp['VALUE'], ['allowed_classes' => false]);
                                                                             }
                                                                             ?>
                                                                             <?=$orderProp['VALUE']?>

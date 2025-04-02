@@ -97,7 +97,7 @@ $eventManager->addEventHandler('ipol.aliexpress', 'onBeforeItemExport', function
 
 
             /*
-            $arDescr = unserialize($arProps['OPISANIE_DLYA_ALIEKSPRESS']['VALUE']);
+            $arDescr = unserialize($arProps['OPISANIE_DLYA_ALIEKSPRESS']['VALUE'], ['allowed_classes' => false]);
             ECHO 'ok ob';
             print_r($arProps['OPISANIE_DLYA_ALIEKSPRESS']['VALUE']);
             print_r($arDescr); exit;

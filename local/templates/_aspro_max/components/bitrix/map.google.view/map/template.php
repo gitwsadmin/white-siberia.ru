@@ -187,7 +187,7 @@ $arParams["CLICKABLE"] = ( $arParams["CLICKABLE"] ? $arParams["CLICKABLE"] : "Y"
 				<?if( $cnt > 1 ){?>
 					map.fitBounds(bounds);
 				<?}else{
-					$map_data = unserialize($arParams["MAP_DATA"]);?>
+					$map_data = unserialize($arParams["MAP_DATA"], ['allowed_classes' => false]);?>
 					//map.SetZoom(<?=$map_data["google_scale"]?>);
 				<?}?>
 			<?}?>

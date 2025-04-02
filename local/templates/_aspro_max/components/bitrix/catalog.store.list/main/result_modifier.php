@@ -26,7 +26,7 @@
 				$arStoresByID[$arStore['ID']]["EMAIL"] = htmlspecialchars_decode($arStore["EMAIL"]);
 				$arStoresByID[$arStore['ID']]["DESCRIPTION"] = htmlspecialchars_decode($arStore['DESCRIPTION']);
 				$arStoresByID[$arStore['ID']]["METRO_PLACEMARK_HTML"] = '';
-				if($arStoresByID[$arStore['ID']]["METRO"] = unserialize($arStore['~UF_METRO'])){
+				if($arStoresByID[$arStore['ID']]["METRO"] = unserialize($arStore['~UF_METRO'], ['allowed_classes' => false])){
 					foreach($arStoresByID[$arStore['ID']]['METRO'] as $metro){
 						$arStoresByID[$arStore['ID']]["METRO_PLACEMARK_HTML"] .= '<div class="metro"><i></i>'.$metro.'</div>';
 					}

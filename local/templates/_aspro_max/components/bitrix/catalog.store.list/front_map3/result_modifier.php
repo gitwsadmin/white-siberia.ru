@@ -9,7 +9,7 @@ if($arResult['STORES'])
 		$arTmp = array();
 		$arTmp['EMAIL'] = htmlspecialchars_decode($arStore['EMAIL']);
 		$arTmp['METRO_PLACEMARK_HTML'] = '';
-		if($arTmp['METRO'] = unserialize($arStore['UF_METRO']))
+		if($arTmp['METRO'] = unserialize($arStore['UF_METRO'], ['allowed_classes' => false]))
 		{
 			$arTmp['METRO_PLACEMARK_HTML'] = implode(', ', $arTmp['METRO']);
 		}

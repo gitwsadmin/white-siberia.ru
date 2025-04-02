@@ -9,7 +9,7 @@ if($userId) {
 	$ufId = ($userId % 1000).($comment['ID'] % 1000);
 	$fields = $USER_FIELD_MANAGER->GetUserFields("BLOG_COMMENT_ID", $ufId);
 	$fieldValueLike = $fields['UF_LIKE_ID']['VALUE'];
-	$fieldValueLike = unserialize($fieldValueLike);
+	$fieldValueLike = unserialize($fieldValueLike, ['allowed_classes' => false]);
 
 	if( isset($fieldValueLike[$userId]) ) {
 		$valuelike = $fieldValueLike[$userId];
@@ -20,7 +20,7 @@ if($userId) {
 	$bActiveLike = $valuelike == 'Y';
 
 	$fieldValueDisLike = $fields['UF_DISLIKE_ID']['VALUE'];
-	$fieldValueDisLike = unserialize($fieldValueDisLike);
+	$fieldValueDisLike = unserialize($fieldValueDisLike, ['allowed_classes' => false]);
 
 	if( isset($fieldValueDisLike[$userId]) ) {
 		$valuedislike = $fieldValueDisLike[$userId];
