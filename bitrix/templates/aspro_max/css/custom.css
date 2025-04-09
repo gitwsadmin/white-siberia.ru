@@ -327,3 +327,9 @@ section.toggle label {
 {
     height: 600px !important;
 }
+
+/*яндекс сплит*/
+.yandex_split {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

@@ -448,4 +448,12 @@ $arUrlRewrite=array (
     'PATH' => '/blog/index.php',
     'SORT' => 100,
   ),
+    24 =>
+        array (
+            'CONDITION' => '#^/bitrix/services/yandexpay.pay/trading/#',
+            'RULE' => '',
+            'ID' => '',
+            'PATH' => '/bitrix/services/yandexpay.pay/trading/index.php',
+            'SORT' => 1,
+        ),
 );

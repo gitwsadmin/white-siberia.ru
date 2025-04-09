@@ -920,6 +920,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 											):?>
 												<?=CMax::showPriceMatrix($arResult, $arParams, $strMeasure, $arAddToBasketData);?>
 											<?endif;?>
+
 										<?elseif($arResult["PRICES"]):?>
 											<?\Aspro\Functions\CAsproMaxItem::showItemPrices($arParams, $arResult["PRICES"], $strMeasure, $min_price_id, ($arParams["SHOW_DISCOUNT_PERCENT_NUMBER"] == "Y" ? "N" : "Y"));?>
 										<?endif;?>
@@ -1027,6 +1028,117 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 						<?$this->SetViewTarget('PRODUCT_SIDE_INFO', 500);?>
 							<div class="js-prices-in-side product-action">
 								<div class="buy_block">
+                                    <?
+                                    //Проверим, что товары из картегории "Техника" 270
+                                    $isTech = false;
+                                    $rsGroups = CIBlockElement::GetElementGroups($arResult['ID'], true);
+                                    while ($arGroup = $rsGroups->Fetch()) {
+                                        $rsPath = CIBlockSection::GetNavChain(false, $arGroup["ID"], ["ID"]);
+                                        while ($arPath = $rsPath->Fetch()) {
+                                            if ($arPath["ID"] == 270) {
+                                                $isTech = true;
+                                                break 2;
+                                            }
+                                        }
+                                    }
+
+                                    //Проверим, что у нас есть цена, она рознична 16 и она не больше лимита по сплиту 150 000
+                                    if (!empty($arResult['PRICE_MATRIX']['MATRIX'][16])) {
+                                        $priceID16 = $arResult['PRICE_MATRIX']['MATRIX'][16];
+                                        if (!empty($priceID16['ZERO-INF']['DISCOUNT_PRICE']) && $priceID16['ZERO-INF']['DISCOUNT_PRICE'] < 150000) {
+                                            $price16 = $priceID16['ZERO-INF']['DISCOUNT_PRICE'];
+                                        } elseif (!empty($priceID16['ZERO-INF']['PRICE']) && $priceID16['ZERO-INF']['PRICE'] < 150000) {
+                                            $price16 = $priceID16['ZERO-INF']['PRICE'];
+                                        } else {
+                                            $price16 = 0;
+                                        }
+                                    }
+                                    //Если оба условия соблюдены выведем Бэйдж яндекса
+                                    if ($isTech && $price16 > 0) {?>
+                                        <script src="https://pay.yandex.ru/sdk/v1/pay.js" onload="onYaPayLoad()" async></script>
+                                        <?/*?><div class="yandex_split">
+                                            <yandex-pay-badge
+                                                    merchant-id="6c7e10ae-851a-4c5d-89e4-d37964ac91f7"
+                                                    type="bnpl"
+                                                    amount="<?=$price16?>"
+                                                    size="l"
+                                                    variant="detailed"
+                                                    theme="dark"
+                                                    align="left"
+                                                    color="grey"
+                                            />
+
+                                        </div><?*/?>
+                                        <div id="ypaysplit"></div>
+                                        <script>
+                                            function onYaPayLoad() {
+                                                const YaPay = window.YaPay;
+
+                                                // Данные платежа
+                                                const paymentData = {
+                                                    // Для отладки нужно явно указать `SANDBOX` окружение,
+                                                    // для продакшена параметр можно убрать или указать `PRODUCTION`
+                                                    env: YaPay.PaymentEnv.production,
+
+                                                    // Версия 4 указывает на тип оплаты сервисом Яндекс Пэй
+                                                    // Пользователь производит оплату на форме Яндекс Пэй,
+                                                    // и мерчанту возвращается только результат проведения оплаты
+                                                    version: 4,
+
+                                                    // Код валюты в которой будете принимать платежи
+                                                    currencyCode: YaPay.CurrencyCode.Rub,
+
+                                                    // Идентификатор продавца, который получают при регистрации в Яндекс Пэй
+                                                    merchantId: '6c7e10ae-851a-4c5d-89e4-d37964ac91f7',
+
+                                                    // Сумма к оплате
+                                                    // Сумма которая будет отображена на форме зависит от суммы переданной от бэкенда
+                                                    // Эта сумма влияет на отображение доступности Сплита
+                                                    totalAmount: <?=$price16?>,
+
+                                                    // Доступные для использования методы оплаты
+                                                    // Доступные на форме способы оплаты также зависят от информации переданной от бэкенда
+                                                    // Данные передаваемые тут влияют на внешний вид кнопки или виджета
+                                                    availablePaymentMethods: ['SPLIT'],
+                                                };
+                                                // Обработчик на клик по кнопке
+                                                // Функция должна возвращать промис которые резолвит ссылку на оплату полученную от бэкенда Яндекс Пэй
+                                                // Подробнее про создание заказа: https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post
+                                                async function onPayButtonClick() {
+                                                    // Создание заказа...
+                                                    // и возврат URL на оплату вида 'https://pay.ya.ru/l/XXXXXX'
+                                                }
+
+                                                // Обработчик на ошибки при открытии формы оплаты
+                                                function onFormOpenError(reason) {
+                                                    // Выводим информацию о недоступности оплаты в данный момент
+                                                    // и предлагаем пользователю другой способ оплаты.
+                                                    console.error(`Payment error — ${reason}`);
+                                                }
+
+                                                // Создаем платежную сессию
+                                                YaPay.createSession(paymentData, {
+                                                    onPayButtonClick: onPayButtonClick,
+                                                    onFormOpenError: onFormOpenError,
+                                                })
+                                                    .then(function (paymentSession) {
+                                                        paymentSession.mountWidget(
+                                                            document.querySelector('#ypaysplit'),
+                                                            {
+                                                                widgetType: YaPay.WidgetType.BnplPreview,
+                                                                padding: YaPay.WidgetPaddingType.Default,
+                                                            }
+                                                        );
+                                                        // console.log('Widget mounted successfully');
+                                                    })
+                                                    .catch(function (err) {
+                                                        // Не получилось создать платежную сессию.
+                                                        console.log('Error:', err);
+                                                    });
+                                            }
+
+                                        </script>
+                                    <?}?>
 									<?if($arResult["OFFERS"] && $showCustomOffer):?>
 										<div class="sku_props inner_content js_offers__<?=$arResult['ID'];?>_detail">
 											<?if (!empty($arResult['OFFERS_PROP'])){?>
