@@ -672,3 +672,13 @@ else
 	}
 }
 ?>
+<script>
+    BX.ready(function() {
+        var paySystemInputs = document.querySelectorAll('input[name="PAY_SYSTEM_ID"]');
+        paySystemInputs.forEach(function(input) {
+            input.addEventListener('change', function() {
+                BX.Sale.OrderAjaxComponent.sendRequest();
+            });
+        });
+    });
+</script>

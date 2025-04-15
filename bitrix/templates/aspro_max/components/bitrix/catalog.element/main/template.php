@@ -1029,13 +1029,13 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 							<div class="js-prices-in-side product-action">
 								<div class="buy_block">
                                     <?
-                                    //Проверим, что товары из картегории "Техника" 270
+                                    //Проверим, что товары из картегории "Техника" 270 или "Техника с уценкой" 536
                                     $isTech = false;
                                     $rsGroups = CIBlockElement::GetElementGroups($arResult['ID'], true);
                                     while ($arGroup = $rsGroups->Fetch()) {
                                         $rsPath = CIBlockSection::GetNavChain(false, $arGroup["ID"], ["ID"]);
                                         while ($arPath = $rsPath->Fetch()) {
-                                            if ($arPath["ID"] == 270) {
+                                            if ($arPath["ID"] == 270 || $arPath["ID"] == 536) {
                                                 $isTech = true;
                                                 break 2;
                                             }

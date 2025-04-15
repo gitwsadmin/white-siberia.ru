@@ -444,56 +444,33 @@ function pr($ar, $dark = false, $die = false)
 }
 
 
-// Регистрация обработчика события
-AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", "TrackProductChanges");
-
+AddEventHandler("sale", "OnSaleComponentOrderUserResult", "modifyBasketPricesByPaymentSystem");
 /**
- * Функция-обработчик для отслеживания изменений товара.
- *
- * @param array $arFields Массив полей элемента информационного блока.
+ * Наценка в корзине при ЯндексСплит и снятие наценки при другой платежной системе
+ * @param $arUserResult
+ * @param $request
+ * @param $arParams
  * @return void
  */
-function TrackProductChanges($arFields)
+function modifyBasketPricesByPaymentSystem(&$arUserResult, $request, &$arParams)
 {
-    // Проверяем, соответствует ли ID элемента заданному (21248)
-    if ($arFields['ID'] == 21248) {
-        // Получаем ID текущего пользователя
-        $userId = (int)$GLOBALS['USER']->GetID();
+    $paymentSystemId = $arUserResult['PAY_SYSTEM_ID'];
+    $basket = Bitrix\Sale\Basket::loadItemsForFUser(
+        Bitrix\Sale\Fuser::getId(),
+        Bitrix\Main\Context::getCurrent()->getSite()
+    );
 
-        // Получаем информацию о пользователе
-        $user = CUser::GetByID($userId)->Fetch();
-        $userName = $user['LOGIN'] . ' (' . $user['NAME'] . ' ' . $user['LAST_NAME'] . ')';
+    foreach ($basket as $basketItem) {
+        $originalPrice = $basketItem->getField('BASE_PRICE');
 
-        // Логируем информацию о том, кто изменил товар
-        LogTG("Товар с ID {$arFields['ID']} был изменен пользователем: {$userName} (ID: {$userId})");
+        if ($paymentSystemId == 25) {
+            $newPrice = $originalPrice * 1.06; // Наценка 6%
+        } else {
+            $newPrice = $originalPrice; // Возврат к исходной цене
+        }
 
-        // Если нужно сохранить данные в файл или базу данных, можно добавить дополнительный код здесь
+        $basketItem->setField('PRICE', $newPrice);
+        $basketItem->setField('CUSTOM_PRICE', 'Y');
     }
-}
-
-// Регистрация обработчика события
-AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", "TrackProductChanges1");
-
-/**
- * Функция-обработчик для отслеживания изменений товара.
- *
- * @param array $arFields Массив полей элемента информационного блока.
- * @return void
- */
-function TrackProductChanges1($arFields)
-{
-    // Проверяем, соответствует ли ID элемента заданному (21235)
-    if ($arFields['ID'] == 21235) {
-        // Получаем ID текущего пользователя
-        $userId = (int)$GLOBALS['USER']->GetID();
-
-        // Получаем информацию о пользователе
-        $user = CUser::GetByID($userId)->Fetch();
-        $userName = $user['LOGIN'] . ' (' . $user['NAME'] . ' ' . $user['LAST_NAME'] . ')';
-
-        // Логируем информацию о том, кто изменил товар
-        LogTG("Товар с ID {$arFields['ID']} был изменен пользователем: {$userName} (ID: {$userId})");
-
-        // Если нужно сохранить данные в файл или базу данных, можно добавить дополнительный код здесь
-    }
+    $basket->save();
 }
