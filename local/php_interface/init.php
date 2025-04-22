@@ -443,7 +443,7 @@ function pr($ar, $dark = false, $die = false)
     if($die) die();
 }
 
-
+/*
 AddEventHandler("sale", "OnSaleComponentOrderUserResult", "modifyBasketPricesByPaymentSystem");
 /**
  * Наценка в корзине при ЯндексСплит и снятие наценки при другой платежной системе
@@ -452,6 +452,7 @@ AddEventHandler("sale", "OnSaleComponentOrderUserResult", "modifyBasketPricesByP
  * @param $arParams
  * @return void
  */
+/*
 function modifyBasketPricesByPaymentSystem(&$arUserResult, $request, &$arParams)
 {
     $paymentSystemId = $arUserResult['PAY_SYSTEM_ID'];
@@ -474,3 +475,4 @@ function modifyBasketPricesByPaymentSystem(&$arUserResult, $request, &$arParams)
     }
     $basket->save();
 }
+*/
