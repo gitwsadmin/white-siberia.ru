@@ -404,3 +404,14 @@ BX.saleOrderAjax = {
     });
   },
 };
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new MutationObserver(() => {
+    document.querySelectorAll('.bx-compact__prop-value').forEach(el => {
+      if (el.textContent.trim().toLowerCase() === 'бесплатно') {
+        el.parentElement.style.display = 'none';
+      }
+    });
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+});
